@@ -116,7 +116,6 @@
     <None Include="gw-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
     <Content Include="gw-icon.ico" />
   </ItemGroup>
   <ItemGroup>
