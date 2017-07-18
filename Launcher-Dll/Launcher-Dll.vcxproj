@@ -21,12 +21,6 @@
   <ItemGroup>
     <ClCompile Include="GWML.c" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="FodyWeavers.xml" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5B14128A-090A-4125-B5B2-239A5D737CCA}</ProjectGuid>
     <RootNamespace>LauncherDll</RootNamespace>
