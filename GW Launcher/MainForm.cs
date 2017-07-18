@@ -53,9 +53,10 @@ namespace GW_Launcher
         public MainForm()
         {
             InitializeComponent();
+            doDebug();
         }
 
-        private void TimerBatchLoadAccounts(Object obj,EventArgs args)
+        private void TimerBatchLoadAccounts(Object obj, EventArgs args)
         {
             var acc = accounts[selectedItems[batch_index]];
             listViewAccounts.Items[selectedItems[batch_index]].SubItems[3].Text = "Loading...";
@@ -68,8 +69,7 @@ namespace GW_Launcher
             }
         }
 
-        private void TimerEventProcessor(Object myObject,
-                                            EventArgs myEventArgs)
+        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
         {
             for (int i = 0; i < procs.Length; ++i)
             {
@@ -155,17 +155,48 @@ namespace GW_Launcher
         private void listViewAccounts_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var selectedItems = listViewAccounts.SelectedIndices;
-            if (selectedItems.Count == 0) return;
+            if (selectedItems.Count == 0) { return; }
             var acc = accounts[selectedItems[0]];
 
-            if (listViewAccounts.Items[selectedItems[0]].SubItems[3].Text == "Active") return;
+            if (listViewAccounts.Items[selectedItems[0]].SubItems[3].Text == "Active") { return; }
 
             listViewAccounts.Items[selectedItems[0]].SubItems[3].Text = "Loading...";
 
+            string datpath = acc.gwpath.Substring(0, acc.gwpath.Length - 6);
+            string datfile = String.Format("{0}Gw.dat", datpath);
+            bool datexists = File.Exists(@datfile) ? true : false;
+
+            if (!datexists)
+            {
+                for (int i = 0; i < accounts.Length; ++i)
+                {
+                    string datpath2 = accounts[i].gwpath.Substring(0, accounts[i].gwpath.Length - 6);
+                    string datfile2 = String.Format("{0}Gw.dat", datpath2);
+                    bool datexists2 = File.Exists(@datfile2) ? true : false;
+                    string status = listViewAccounts.Items[i].SubItems[3].Text;
+
+                    if (datexists2 && status == "Inactive")
+                    {
+                        try
+                        {
+                            debug("Dat Attempting Copy");
+                            string from = System.IO.Path.Combine(@datfile2);
+                            string to = System.IO.Path.Combine(@datfile);
+
+                            File.Move(from, to); // Try to move
+                            debug("Dat Copy Completed");
+                        }
+                        catch (IOException ex)
+                        {
+                            debug("Dat Copy Failed");
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
             procs[selectedItems[0]] = MulticlientPatch.LaunchClient(acc.gwpath, " -email " + acc.email + " -password " + acc.password + " -character \"" + acc.character + "\" " + acc.extraargs, acc.datfix);
-
             new GWCAMemory(procs[selectedItems[0]]).WriteWString(GW_Launcher.GWMem.WinTitle, acc.character + '\0');
-
             listViewAccounts.Items[selectedItems[0]].SubItems[3].Text = "Active";
         }
 
@@ -284,6 +315,11 @@ namespace GW_Launcher
                 this.OnLoad(new EventArgs());
             }
 
+        }
+
+        private void checkBoxDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            doDebug();
         }
     }
 }
