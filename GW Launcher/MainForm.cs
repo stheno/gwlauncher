@@ -146,7 +146,9 @@ namespace GW_Launcher
 
             for (int i = 0; i < accounts.Length; ++i)
             {
-                listViewAccounts.Items.Add(new ListViewItem(new string[] { null, accounts[i].alias, accounts[i].character, alreadyonline[i] ? "Active" : "Inactive" }, "gw-icon"));
+                var item = new ListViewItem(new string[] { null, accounts[i].alias, accounts[i].character, alreadyonline[i] ? "Active" : "Inactive" }, "gw-icon");
+                listViewAccounts.Items.Add(item);
+                item.BackColor = (i % 2 == 0) ? Color.LightGray : Color.White;
             }
             first = false;
 
