@@ -7,6 +7,7 @@
 ![lnch-add-account](http://puu.sh/wO35w/8c1d8889b4.jpg)
 ![lnch-edit-account](https://puu.sh/wO35O/37cbf03746.jpg)
 ![lnch-1](https://puu.sh/wO2tI/2c1aeb4365.jpg)
+![lnch-1](https://puu.sh/wO45g/49fa6a9a3d.jpg)
 
 * * *
 
@@ -24,6 +25,7 @@
 	This now checks the path for the dat file. If it does not exist it scans other account entry paths.
 	If the entry is inactive it will move the dat file to the clicked account path and run the game.
 	If it can't find a dat to move. It will just start the game and get a fresh dat from the server.
+* A debug window toggle that developers can use to assist in adding/tweaking features. Currently it only displays messages about dat move.
 * * * *
 
 ### Installation
