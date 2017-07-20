@@ -30,7 +30,7 @@ namespace GW_Launcher
                 #endregion
 
                 #region Use this area below for debugging functions.
-                /*string astring = "foo, are, foo";
+                /*string astring = "you, are, foo";
                 debug(astring);*/
 
                 /*object[] test = new object[99];
