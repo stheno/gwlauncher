@@ -16,12 +16,14 @@
 *   ".dat Patch" allows you to run multiple clients off of one installation. (Side effects occur when using this, see below for details)
 *   Open source.
 
-## New
+#### New
 * Alias column to further identify which account is tied to the particular entered character name.
 * For those that do not have much hard drive space but want to run multiple accounts...
 	This now checks the path for the dat file. If it does not exist it scans other account entry paths.
 	If the entry is inactive it will move the dat file to the clicked account path and run the game.
 	If it can't find a dat to move. It will just start the game and get a fresh dat from the server.
+
+* * * *
 
 ### Installation
 
@@ -41,10 +43,12 @@
 
 Right click the Main Launcher Window to reveal a context menu, then select _Add New_. The Add Account window will then pop up. Fill out all the information it asks for, then hit Add. The new account will now appear in the main form list. Double click to launch.
 
-## New
+#### New
 #### Edit an Account
 
 Right click the Main Launcher Window to reveal a context menu, then select _Edit Selected_. The same window for add account will pop up, but with one exception. The button does indeed show EDIT. This will change any info and save it.
+
+* * * *
 
 #### Remove an Account
 
